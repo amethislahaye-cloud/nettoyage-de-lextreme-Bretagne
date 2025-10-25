@@ -14,31 +14,46 @@ const Index = () => {
       title: "Syndrome de Diogène",
       description: "Nettoyage et désencombrement de logements avec accumulation pathologique",
       href: "/services/syndrome-diogene",
-      image: "🏚️"
+      image: {
+        src: "https://img.icons8.com/external-flaticons-flat-flat-icons/96/external-hoarder-addictions-flaticons-flat-flat-icons.png",
+        alt: "Icône représentant un logement encombré"
+      }
     },
     {
       title: "Logement Insalubre",
       description: "Remise en état de logements présentant des risques sanitaires",
       href: "/services/logement-insalubre",
-      image: "⚠️"
+      image: {
+        src: "https://img.icons8.com/fluency/96/hazard-cleanup.png",
+        alt: "Icône de nettoyage de zone dangereuse"
+      }
     },
     {
       title: "Remise en État Appartement",
       description: "Nettoyage approfondi et rénovation de biens immobiliers",
       href: "/services/remise-en-etat-appartement",
-      image: "✨"
+      image: {
+        src: "https://img.icons8.com/color/96/maintenance.png",
+        alt: "Icône de rénovation d'intérieur"
+      }
     },
     {
       title: "Nettoyage Après Location",
       description: "État des lieux de sortie et remise en état locative",
       href: "/services/nettoyage-apres-location",
-      image: "🔑"
+      image: {
+        src: "https://img.icons8.com/fluency/96/key-exchange.png",
+        alt: "Icône d'échange de clés"
+      }
     },
     {
       title: "Nettoyage Fin de Chantier",
       description: "Nettoyage professionnel post-travaux et post-rénovation",
       href: "/services/nettoyage-fin-de-chantier",
-      image: "🏗️"
+      image: {
+        src: "https://img.icons8.com/color/96/construction-worker-skin-type-1.png",
+        alt: "Icône d'ouvrier de chantier"
+      }
     }
   ];
 
@@ -114,18 +129,28 @@ const Index = () => {
                   <Link
                     key={index}
                     to={service.href}
-                    className="group bg-card rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-border hover:border-primary/50"
+                    className="group relative overflow-hidden rounded-2xl p-6 backdrop-blur bg-card/70 border border-white/10 shadow-[0_10px_30px_-10px_rgba(15,23,42,0.35)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_-15px_rgba(15,23,42,0.5)] hover:border-primary/40"
                   >
-                    <div className="text-5xl mb-4">{service.image}</div>
-                    <h3 className="text-xl font-semibold text-primary mb-3 group-hover:text-primary-hover transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                      {service.description}
-                    </p>
-                    <div className="flex items-center text-accent font-semibold text-sm group-hover:gap-2 transition-all">
-                      <span>En savoir plus</span>
-                      <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                    <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-br from-primary/10 via-transparent to-accent/20" />
+                    <div className="relative">
+                      <div className="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-3xl bg-white/80 shadow-inner shadow-white/40 ring-1 ring-primary/10">
+                        <img
+                          src={service.image.src}
+                          alt={service.image.alt}
+                          loading="lazy"
+                          className="h-12 w-12 object-contain"
+                        />
+                      </div>
+                      <h3 className="text-xl font-semibold text-primary mb-3 group-hover:text-primary-hover transition-colors">
+                        {service.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                        {service.description}
+                      </p>
+                      <div className="flex items-center text-accent font-semibold text-sm group-hover:gap-2 transition-all">
+                        <span>En savoir plus</span>
+                        <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                      </div>
                     </div>
                   </Link>
                 ))}
@@ -147,11 +172,25 @@ const Index = () => {
           {/* CTA Section */}
           <section className="py-16 md:py-24 bg-gradient-hero text-white">
             <div className="container mx-auto px-4 text-center">
+              <div className="flex flex-wrap justify-center gap-4 mb-10">
+                {[
+                  "Intervention d'urgence",
+                  "Disponible 24/7",
+                  "Devis 100% gratuit"
+                ].map((badge, badgeIndex) => (
+                  <span
+                    key={badgeIndex}
+                    className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-sm font-semibold uppercase tracking-wide text-white/90 shadow-[0_8px_20px_-12px_rgba(15,23,42,0.6)] backdrop-blur"
+                  >
+                    {badge}
+                  </span>
+                ))}
+              </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 Besoin d'une intervention urgente ?
               </h2>
               <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-                Notre équipe est disponible 24h/24 et 7j/7 pour répondre à vos urgences. 
+                Notre équipe est disponible 24h/24 et 7j/7 pour répondre à vos urgences.
                 Contactez-nous maintenant pour un devis gratuit.
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -172,6 +211,16 @@ const Index = () => {
                   className="text-lg px-8 py-6"
                 >
                   <Link to="/contact">Demander un devis gratuit</Link>
+                </Button>
+              </div>
+              <div className="mt-6 flex flex-col sm:flex-row justify-center gap-4">
+                <Button asChild variant="outline" size="lg" className="text-lg px-8 py-6 border-white/40 text-white hover:bg-white/10">
+                  <Link to="/planifier-visite">Planifier une visite</Link>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="text-lg px-8 py-6 border-white/40 text-white hover:bg-white/10">
+                  <a href="/brochure.pdf" download>
+                    Télécharger la brochure
+                  </a>
                 </Button>
               </div>
             </div>
