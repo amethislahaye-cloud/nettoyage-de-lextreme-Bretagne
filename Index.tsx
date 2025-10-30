@@ -7,6 +7,7 @@ import ProcessSection from "@/components/ProcessSection";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, Phone } from "lucide-react";
+import FAQSection from "@/components/FAQSection";
 
 const Index = () => {
   const services = [
@@ -143,6 +144,7 @@ const Index = () => {
           </section>
 
           <ProcessSection />
+          <FAQSection />
 
           {/* CTA Section */}
           <section className="py-16 md:py-24 bg-gradient-hero text-white">
